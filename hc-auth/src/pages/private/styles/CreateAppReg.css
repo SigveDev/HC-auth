@@ -1,0 +1,104 @@
+.CreateAppReg {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100vh;
+}
+.CreateAppRegWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: calc(50% - 2rem);
+    height: fit-content;
+    max-width: 500px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--secondary-color);
+    padding: 1rem;
+}
+.backToDashboard {
+    font-size: 0.8rem;
+    color: var(--small-text-color);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 0;
+    margin-right: auto;
+}
+.backToDashboard:hover {
+    color: var(--accent-color);
+}
+.header {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+.form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 50vw;
+    height: fit-content;
+    max-width: 500px;
+    border-radius: 20px;
+}
+.form label {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+.form input {
+    width: 90%;
+    height: 2rem;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    margin-bottom: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding-left: 0.5rem;
+}
+.form input:focus {
+    outline: none;
+    border: 1px solid var(--accent-color);
+}
+.form button {
+    width: 40%;
+    height: 3rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+}

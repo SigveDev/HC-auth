@@ -1,0 +1,19 @@
+:root {
+  --text-color: #fcf8fb;
+  --small-text-color: #a8a8a8;
+  --background-color: #11090F;
+  --primary-color: #c889bc;
+  --secondary-color: #34182f;
+  --accent-color: #fa19d1;
+  --warning-color: #b32c2a;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+}
+
+.Router {
+  background-color: var(--background-color);
+  min-height: 100dvh;
+  min-width: 100dvw;
+}

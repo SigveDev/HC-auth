@@ -1,0 +1,166 @@
+.Header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 1rem;
+    height: 4rem;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--secondary-color);
+    position: relative;
+}
+
+.logo {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin: 0;
+    text-decoration: none;
+    font-weight: 600;
+}
+.logo span {
+    color: var(--accent-color);
+}
+
+.Avatar {
+    height: 75%;
+    -webkit-aspect-ratio: 1/1;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.Avatar:hover {
+    -webkit-filter: brightness(1.2);
+    filter: brightness(1.2);
+}
+
+.Avatar img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.ProfileMenu {
+    position: absolute;
+    right: 0;
+    top: 4rem;
+    width: 20%;
+    height: fit-content;
+    background-color: var(--background-color);
+    border-radius: 0 0 0 10px;
+    border: 1px solid var(--secondary-color);
+    padding: 0.5rem;
+    z-index: 100;
+}
+
+.UserInfo {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 2.5fr;
+    grid-template-columns: 1fr 2.5fr;
+    -ms-grid-rows: 1fr;
+    grid-template-rows: 1fr;
+    -ms-grid-column-gap: 15px;
+    grid-column-gap: 15px;
+    -ms-grid-template-areas: "avatar name";
+    grid-template-areas: "avatar name";
+    width: 100%;
+}
+
+.UserInfo .AvatarSmall {
+    -ms-grid-area: avatar;
+    grid-area: avatar;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.UserInfo .AvatarSmall img {
+    width: 100%;
+    border-radius: 50%;
+    -webkit-aspect-ratio: 1/1;
+    aspect-ratio: 1/1;
+}
+
+.UserInfo .AvatarInfo {
+    -ms-grid-area: name;
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.UserInfo .AvatarInfo .name {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.UserInfo .AvatarInfo .small {
+    font-size: 0.8rem;
+    color: var(--small-text-color);
+}
+
+.MenuLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.MenuLinks a {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1rem;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+}
+
+.MenuLinks a:hover {
+    background-color: var(--secondary-color);
+}
+
+.MenuLinks button {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.MenuLinks button:hover {
+    background-color: var(--warning-color);
+}

@@ -1,0 +1,137 @@
+.Auth {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100dvh;
+    width: 100dvw;
+}
+.AuthBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: calc(50% - 2rem);
+    height: fit-content;
+    max-width: 500px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--secondary-color);
+    padding: 1rem;
+}
+.AuthHeader {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin: 0;
+}
+.small {
+    font-size: 0.8rem;
+    color: var(--small-text-color);
+    margin-top: 0;
+}
+.small span {
+    color: var(--accent-color);
+}
+.userInfo {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 4fr;
+    grid-template-columns: 1fr 4fr;
+    -ms-grid-column-gap: 15px;
+    grid-column-gap: 15px;
+    width: 65%;
+    height: fit-content;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem;
+}
+.AuthAvatar {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.AuthAvatar img {
+    width: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+.UserName {
+    font-size: 1.8rem;
+    margin: 0;
+}
+.AuthButtons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    margin-top: 0.2rem;
+}
+.AuthLogin {
+    background-color: transparent;
+    border: none;
+    font-size: 0.8rem;
+    color: var(--small-text-color);
+    cursor: pointer;
+    margin-bottom: 0.8rem;
+}
+.AuthButton {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 40%;
+    height: 3rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+.AuthButton:hover {
+    filter: brightness(0.9);
+}

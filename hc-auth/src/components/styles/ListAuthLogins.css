@@ -1,0 +1,69 @@
+.ListAuthLogins {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    margin-top: 4rem;
+}
+.AuthHeader {
+    font-size: 2rem;
+    margin: 0;
+}
+.Wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px;
+    margin-top: 1rem;
+}
+.App {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: calc(100% - 2rem);
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+    padding: 1rem;
+}
+.App .name {
+    font-size: 1.8rem;
+    margin: 0 0 0.1rem 0;
+}
+.App .date {
+    font-size: 0.8rem;
+    color: var(--small-text-color);
+}
+.App .url {
+    font-size: 1rem;
+    color: var(--accent-color);
+    margin: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+.App .delete {
+    position: absolute;
+    font-size: 1.2rem;
+    top: 0.8rem;
+    left: 0.5rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
