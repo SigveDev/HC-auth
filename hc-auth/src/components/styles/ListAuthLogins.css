@@ -14,7 +14,7 @@
     font-size: 2rem;
     margin: 0;
 }
-.Wrapper {
+.Auth-Wrapper {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -66,4 +66,18 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
+}
+
+@media screen and (max-width: 770px) {
+    .Auth-Wrapper {
+        -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .Auth-Wrapper {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    }
 }

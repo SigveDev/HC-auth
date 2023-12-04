@@ -164,3 +164,25 @@
 .MenuLinks button:hover {
     background-color: var(--warning-color);
 }
+
+@media screen and (max-width: 770px) {
+    .Header {
+        padding: 0 0.5rem;
+    }
+
+    .ProfileMenu {
+        width: calc(50% - 1rem);
+        border-radius: 0 0 10px 10px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .Header {
+        padding: 0 0.5rem;
+    }
+
+    .ProfileMenu {
+        width: calc(100% - 1rem);
+        border-radius: 0 0 10px 10px;
+    }
+}

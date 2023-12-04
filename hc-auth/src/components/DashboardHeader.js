@@ -1,16 +1,32 @@
 import './styles/DashboardHeader.css';
 import React, { useState, useEffect } from 'react';
-import { avatars } from "../lib/appwrite";
+import { avatars, getUserConfig, getPFP } from "../lib/appwrite";
 
 import ProfileMenu from './ProfileMenu';
 
 const DashboardHeader = ({ account }) => {
+    const [runOnce, setRunOnce] = useState(false);
     const [avatar, setAvatar] = useState(null);
     const [toggleMenu, setToggleMenu] = useState(false);
 
     useEffect(() => {
         if(account) {
-            setAvatar(avatars.getInitials(account.name));
+            if(!runOnce) {
+                setRunOnce(true);
+                getUserConfig(account.$id)
+                    .then((userConfig) => {
+                        if (userConfig.pfp) {
+                            getPFP(userConfig.pfp)
+                                .then((avatar) => {
+                                    setAvatar(avatar);
+                                })
+                                .catch((error) => console.error(error));
+                        } else {
+                            setAvatar(avatars.getInitials(account.name));
+                        }
+                    })
+                    .catch((error) => console.error(error));
+            }
         }
     }, [account]);
 

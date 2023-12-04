@@ -31,7 +31,7 @@ const ListAppReg = ({ account }) => {
                 <h2 className="appRegHeader">Your Apps:</h2>
                 <a href="/dashboard/appreg/create" className="createAppReg"><FontAwesomeIcon icon={faPlus} /></a>
             </div>
-            <div className='Wrapper'>
+            <div className='Reg-Wrapper'>
                 {appReg.map((appReg) => (
                     <div className='AppReg' key={appReg.$id}>
                         <button className='copyId' onClick={() => navigator.clipboard.writeText(appReg.$id)}><FontAwesomeIcon icon={faClone} /></button>

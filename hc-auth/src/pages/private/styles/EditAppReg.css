@@ -118,3 +118,46 @@
 .form button:hover {
     filter: brightness(0.9);
 }
+
+@media screen and (max-width: 770px) {
+    .EditAppRegWrapper {
+        width: calc(80% - 2rem);
+    }
+    .form {
+        width: 70vw;
+    }
+    .form input {
+        width: 100%;
+    }
+    .form .formButtons {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .form button {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .EditAppRegWrapper {
+        width: calc(90% - 2rem);
+    }
+    .form {
+        width: 70vw;
+    }
+    .form input {
+        width: 100%;
+    }
+    .form .formButtons {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .form button {
+        width: 100%;
+    }
+}

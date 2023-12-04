@@ -47,7 +47,7 @@ const ListAuthLogins = ({ account }) => {
     return (
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
-            <div className="Wrapper">
+            <div className="Auth-Wrapper">
                 {(appData.length > 0 && auths) && auths.map((auths) => {
                     const app = appData.find((app) => app.$id === auths.appRegId);
                     return (

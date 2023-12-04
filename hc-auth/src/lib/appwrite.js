@@ -1,4 +1,4 @@
-import { Client, Account, Avatars, Databases, Query, ID } from 'appwrite';
+import { Client, Account, Avatars, Databases, Query, ID, Storage } from 'appwrite';
 
 export const client = new Client();
 
@@ -12,9 +12,37 @@ export const avatars = new Avatars(client);
 
 export const databases = new Databases(client);
 
+export const storage = new Storage(client);
+
 export const createJWTToken = async () => {
     const jwt = await account.createJWT();
     return jwt.jwt;
+};
+
+export const getUserConfig = async (userId) => {
+    try {
+        try {
+            const promise = await databases.getDocument(
+                '655cecb484fe2e300e29',
+                '656e3e4574586638e9a5',
+                userId
+            );
+            return promise;
+        } catch {
+            const userConfig = await databases.createDocument(
+                '655cecb484fe2e300e29',
+                '656e3e4574586638e9a5',
+                userId,
+                {
+                    pfp: null
+                }
+            );
+            return userConfig;
+        }
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
 };
 
 export const getAppRegByOwner= async (ownerId) => {
@@ -174,6 +202,88 @@ export const checkUserData = async () => {
     try{
         const account = new Account(client);
         return account.get();
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};
+
+export const updateUserEmail = async (email, password) => {
+    try {
+        const promise = await account.updateEmail(email, password);
+        return promise;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+}
+
+export const updateUserPhone = async (phone, password) => {
+    try {
+        const promise = await account.updatePhone(phone, password);
+        return promise;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};
+
+export const updateUserName = async (name) => {
+    try {
+        const promise = await account.updateName(name);
+        return promise;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};
+
+export const getPFP = async (userId) => {
+    try {
+        const promise = storage.getFilePreview('656bc6d51ade7be84401', userId);
+        return promise;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};
+
+export const updatePFP = async (userId, file) => {
+    try {
+        const userConfig = await databases.getDocument(
+            '655cecb484fe2e300e29',
+            '656e3e4574586638e9a5',
+            userId
+        );
+        
+        if (userConfig.pfp) {
+            await storage.deleteFile('656bc6d51ade7be84401', userConfig.pfp);
+        }
+
+        // Create new file with userId
+        const promise = await storage.createFile('656bc6d51ade7be84401', ID.unique(), file);
+
+        const fileId = promise.$id;
+        await databases.updateDocument(
+            '655cecb484fe2e300e29',
+            '656e3e4574586638e9a5',
+            userId,
+            {
+                pfp: fileId
+            }
+        );
+
+        return promise;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};
+
+export const updatePass = async (newPassword, password) => {
+    try {
+        const promise = account.updatePassword(newPassword, password);
+        return promise;
     } catch {
         const appwriteError = new Error('Appwrite Error');
         throw new Error(appwriteError.message);

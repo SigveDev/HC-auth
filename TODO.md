@@ -6,16 +6,18 @@ Project Description
 
 ### Todo
 
-- [ ] home-page  
 - [ ] documentasion for creating an app with hc auth  
-- [ ] profile settings  
-- [ ] profile page  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] add mobile view and responsive elements  
+- [x] edit profile  
+- [x] profile settings  
+- [x] profile page  
+- [x] home-page  
 - [x] added only login button on first time, in auth  
 - [x] fix dobble appauth on first login  
 - [x] Edit RegApps  
