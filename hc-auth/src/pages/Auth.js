@@ -11,12 +11,12 @@ const Auth = ({ account }) => {
     const [authId, setAuthId] = useState(null);
     const provider = window.location.pathname.split("/")[2];
 
-    useEffect(async () => {
+    useEffect(() => {
         if(account) {
-            await getUserConfig(account.$id)
-                .then(async (res) => {
+            getUserConfig(account.$id)
+                .then((res) => {
                     if(res.pfp) {
-                        await getPFP(res.pfp)
+                        getPFP(res.pfp)
                             .then((res) => setAvatar(res))
                             .catch((error) => console.error(error));
                     } else {
