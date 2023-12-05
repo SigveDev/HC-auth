@@ -240,7 +240,7 @@ export const updateUserName = async (name) => {
 
 export const getPFP = async (userId) => {
     try {
-        const promise = storage.getFilePreview(process.env.REACT_APP_PFP_STORAGE_ID, userId);
+        const promise = storage.getFileView(process.env.REACT_APP_PFP_STORAGE_ID, userId);
         return promise;
     } catch {
         const appwriteError = new Error('Appwrite Error');
