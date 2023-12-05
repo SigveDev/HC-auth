@@ -38,12 +38,9 @@ const Auth = ({ account }) => {
     }, [provider]);
 
     useEffect(() => {
-        console.log(account);
         if (account !== "error" && appReg) {
-            console.log("got account and appreg");
             if(onlyRunOnce) {
                 setOnlyRunOnce(false);
-                console.log("ran");
                 checkAppAuth(account.$id, provider)
                         .then((res) => {
                             setAuthId(res.$id);
