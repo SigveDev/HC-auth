@@ -38,10 +38,11 @@ const Auth = ({ account }) => {
     }, [provider]);
 
     useEffect(() => {
+        console.log(account);
         if (account && appReg) {
             if(onlyRunOnce) {
                 setOnlyRunOnce(false);
-                console.log(account);
+                console.log("ran");
                 checkAppAuth(account.$id, provider)
                         .then((res) => {
                             setAuthId(res.$id);
