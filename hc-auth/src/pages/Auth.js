@@ -62,8 +62,9 @@ const Auth = ({ account }) => {
         window.location.href = `/login/${provider}`;
     };
 
-    if (appReg && account && account !== "error" && authId) {
-        return (
+    return (
+        <>
+        {account && account !== "error" && appReg && authId ? (
             <div className='Auth'>
                 <div className='AuthBox'>
                     <h1 className='AuthHeader'>HC Auth</h1>
@@ -83,12 +84,11 @@ const Auth = ({ account }) => {
                     </div>
                 </div>
             </div>
-        );
-    } else {
-        return (
+        ) : (
             <Loader />
-        );
-    }
+        )}
+        </>
+    )
 }
 
 export default Auth;
