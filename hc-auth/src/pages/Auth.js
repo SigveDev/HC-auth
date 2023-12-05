@@ -39,7 +39,7 @@ const Auth = ({ account }) => {
 
     useEffect(() => {
         console.log(account);
-        if (account && appReg) {
+        if (account !== "error" && appReg) {
             console.log("got account and appreg");
             if(onlyRunOnce) {
                 setOnlyRunOnce(false);
@@ -59,7 +59,7 @@ const Auth = ({ account }) => {
                         });
             }
         }
-    }, [account, provider]);
+    }, [account, provider, appReg, onlyRunOnce]);
 
     const handleJWT = () => {
         createJWTToken(authId)
