@@ -40,6 +40,7 @@ const Auth = ({ account }) => {
     useEffect(() => {
         console.log(account);
         if (account && appReg) {
+            console.log("got account and appreg");
             if(onlyRunOnce) {
                 setOnlyRunOnce(false);
                 console.log("ran");
