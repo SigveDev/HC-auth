@@ -216,6 +216,7 @@ const Profile = ({ account }) => {
             <div id="changePFPModal">
                 <button className="close" onClick={() => removePFPModal()}><FontAwesomeIcon icon={faXmark} /></button>
                 <h3 className="modal-header">Change Profile Picture</h3>
+                <p className='small-text'>We recommend an aspect ratio of 1 to 1</p>
                 <FileUploader handleChange={handlePFP} name="file" types={["JPG", "JPEG", "PNG"]} />
             </div>
             <button id="pfpmodal-bg" onClick={() => removePFPModal()}></button>
