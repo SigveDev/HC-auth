@@ -3,8 +3,8 @@ import { Client, Account, Avatars, Databases, Query, ID, Storage } from 'appwrit
 export const client = new Client();
 
 client
-    .setEndpoint('http://localhost/v1')
-    .setProject('655bcd2c47b7012c5735');
+    .setEndpoint(process.env.REACT_APP_PROJECT_ENDPOINT)
+    .setProject(process.env.REACT_APP_PROJECT_ID);
 
 export const account = new Account(client);
 
@@ -23,15 +23,15 @@ export const getUserConfig = async (userId) => {
     try {
         try {
             const promise = await databases.getDocument(
-                '655cecb484fe2e300e29',
-                '656e3e4574586638e9a5',
+                process.env.REACT_APP_HC_AUTH_DB_ID,
+                process.env.REACT_APP_USER_CONFIG_TABLE_ID,
                 userId
             );
             return promise;
         } catch {
             const userConfig = await databases.createDocument(
-                '655cecb484fe2e300e29',
-                '656e3e4574586638e9a5',
+                process.env.REACT_APP_HC_AUTH_DB_ID,
+                process.env.REACT_APP_USER_CONFIG_TABLE_ID,
                 userId,
                 {
                     pfp: null
@@ -48,8 +48,8 @@ export const getUserConfig = async (userId) => {
 export const getAppRegByOwner= async (ownerId) => {
     try {
         const response = await databases.listDocuments(
-            '655cecb484fe2e300e29',
-            '655cecbf9b0b70cf3357',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_REG_TABLE_ID,
             [
                 Query.equal('appOwner', ownerId)
             ]
@@ -64,8 +64,8 @@ export const getAppRegByOwner= async (ownerId) => {
 export const getAppAuths = async (userId) => {
     try {
         const response = await databases.listDocuments(
-            '655cecb484fe2e300e29',
-            '655d0bb99f877a72fd87',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_AUTH_TABLE_ID,
             [
                 Query.equal('userId', userId)
             ]
@@ -80,8 +80,8 @@ export const getAppAuths = async (userId) => {
 export const checkAppAuth = async (userId, appId) => {
     try {
         const checkAuth = await databases.listDocuments(
-            '655cecb484fe2e300e29',
-            '655d0bb99f877a72fd87',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_AUTH_TABLE_ID,
             [
                 Query.equal('userId', userId),
                 Query.equal('appRegId', appId)
@@ -102,8 +102,8 @@ export const createAppAuth = async (userId, appId) => {
         }
 
         const appAuth = await databases.createDocument(
-            '655cecb484fe2e300e29',
-            '655d0bb99f877a72fd87',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_AUTH_TABLE_ID,
             ID.unique(),
             {
                 userId: userId,
@@ -120,8 +120,8 @@ export const createAppAuth = async (userId, appId) => {
 export const deleteAppAuth = async (authId) => {
     try {
         const appAuth = await databases.deleteDocument(
-            '655cecb484fe2e300e29',
-            '655d0bb99f877a72fd87',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_AUTH_TABLE_ID,
             authId
         );
         return appAuth;
@@ -134,8 +134,8 @@ export const deleteAppAuth = async (authId) => {
 export const createAppRegistration = async (appName, ownerId, appUrl, appFallbackUrl) => {
     try {
         const appReg = await databases.createDocument(
-            '655cecb484fe2e300e29',
-            '655cecbf9b0b70cf3357',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_REG_TABLE_ID,
             ID.unique(),
             {
                 appName: appName,
@@ -154,8 +154,8 @@ export const createAppRegistration = async (appName, ownerId, appUrl, appFallbac
 export const updateAppRegistration = async (appId, appName, appUrl, appFallbackUrl) => {
     try {
         const appReg = await databases.updateDocument(
-            '655cecb484fe2e300e29',
-            '655cecbf9b0b70cf3357',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_REG_TABLE_ID,
             appId,
             {
                 appName: appName,
@@ -173,8 +173,8 @@ export const updateAppRegistration = async (appId, appName, appUrl, appFallbackU
 export const deleteAppRegistration = async (appId) => {
     try {
         const appReg = await databases.deleteDocument(
-            '655cecb484fe2e300e29',
-            '655cecbf9b0b70cf3357',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_REG_TABLE_ID,
             appId
         );
         return appReg;
@@ -187,8 +187,8 @@ export const deleteAppRegistration = async (appId) => {
 export const getAppRegByID = async (appId) => {
     try {
         const response = await databases.getDocument(
-            '655cecb484fe2e300e29',
-            '655cecbf9b0b70cf3357',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_APP_REG_TABLE_ID,
             appId
         );
         return response;
@@ -240,7 +240,7 @@ export const updateUserName = async (name) => {
 
 export const getPFP = async (userId) => {
     try {
-        const promise = storage.getFilePreview('656bc6d51ade7be84401', userId);
+        const promise = storage.getFilePreview(process.env.REACT_APP_PFP_STORAGE_ID, userId);
         return promise;
     } catch {
         const appwriteError = new Error('Appwrite Error');
@@ -251,22 +251,22 @@ export const getPFP = async (userId) => {
 export const updatePFP = async (userId, file) => {
     try {
         const userConfig = await databases.getDocument(
-            '655cecb484fe2e300e29',
-            '656e3e4574586638e9a5',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_USER_CONFIG_TABLE_ID,
             userId
         );
         
         if (userConfig.pfp) {
-            await storage.deleteFile('656bc6d51ade7be84401', userConfig.pfp);
+            await storage.deleteFile(process.env.REACT_APP_PFP_STORAGE_ID, userConfig.pfp);
         }
 
         // Create new file with userId
-        const promise = await storage.createFile('656bc6d51ade7be84401', ID.unique(), file);
+        const promise = await storage.createFile(process.env.REACT_APP_PFP_STORAGE_ID, ID.unique(), file);
 
         const fileId = promise.$id;
         await databases.updateDocument(
-            '655cecb484fe2e300e29',
-            '656e3e4574586638e9a5',
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_USER_CONFIG_TABLE_ID,
             userId,
             {
                 pfp: fileId
