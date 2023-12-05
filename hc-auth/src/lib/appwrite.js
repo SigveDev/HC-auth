@@ -238,9 +238,9 @@ export const updateUserName = async (name) => {
     }
 };
 
-export const getPFP = async (userId) => {
+export const getPFP = async (id) => {
     try {
-        const promise = storage.getFileView(process.env.REACT_APP_PFP_STORAGE_ID, userId);
+        const promise = storage.getFileView(process.env.REACT_APP_PFP_STORAGE_ID, id);
         return promise;
     } catch {
         const appwriteError = new Error('Appwrite Error');

@@ -1,6 +1,6 @@
 import './Auth.css';
 import { useEffect, useState } from 'react';
-import { checkAppAuth, createAppAuth, getAppRegByID, avatars, createJWTToken } from '../lib/appwrite';
+import { checkAppAuth, createAppAuth, getAppRegByID, avatars, createJWTToken, getUserConfig, getPFP } from '../lib/appwrite';
 
 import Loader from '../components/Loader';
 
@@ -11,9 +11,19 @@ const Auth = ({ account }) => {
     const [authId, setAuthId] = useState(null);
     const provider = window.location.pathname.split("/")[2];
 
-    useEffect(() => {
+    useEffect(async () => {
         if(account) {
-            setAvatar(avatars.getInitials(account.name));
+            await getUserConfig(account.$id)
+                .then(async (res) => {
+                    if(res.pfp) {
+                        await getPFP(res.pfp)
+                            .then((res) => setAvatar(res))
+                            .catch((error) => console.error(error));
+                    } else {
+                        setAvatar(avatars.getInitials(account.name));
+                    }
+                })
+                .catch((error) => console.error(error));
         } else if (account === "error") {
             window.location.href = `/login/${provider}`;
         }
