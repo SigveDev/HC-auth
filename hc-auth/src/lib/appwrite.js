@@ -1,4 +1,4 @@
-import { Client, Account, Avatars, Databases, Query, ID, Storage } from 'appwrite';
+import { Client, Account, Avatars, Databases, Query, ID, Storage, Teams } from 'appwrite';
 
 export const client = new Client();
 
@@ -13,6 +13,10 @@ export const avatars = new Avatars(client);
 export const databases = new Databases(client);
 
 export const storage = new Storage(client);
+
+export const teams = new Teams(client);
+
+export { ID } from 'appwrite';
 
 export const createJWTToken = async () => {
     const jwt = await account.createJWT();
@@ -253,7 +257,7 @@ export const updatePFP = async (userId, file) => {
         const userConfig = await databases.getDocument(
             process.env.REACT_APP_HC_AUTH_DB_ID,
             process.env.REACT_APP_USER_CONFIG_TABLE_ID,
-            userId
+            userId,
         );
         
         if (userConfig.pfp) {
@@ -290,4 +294,42 @@ export const updatePass = async (newPassword, password) => {
     }
 };
 
-export { ID } from 'appwrite';
+export const createUserConfig = async (userId) => {
+    try {
+        const promise = await databases.createDocument(
+            process.env.REACT_APP_HC_AUTH_DB_ID,
+            process.env.REACT_APP_USER_CONFIG_TABLE_ID,
+            userId,
+            {
+                pfp: null
+            }
+        );
+        return promise;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};
+
+export const createUser = async (email, name) => {
+    try {
+        const promise = await account.create(ID.unique(), email, "changeme", name);
+        return promise;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};
+
+export const checkAdmin = async () => {
+    try {
+        const promise = await teams.list();
+        const foundTeam = promise.teams.find((team) => {
+            return team.$id === process.env.REACT_APP_ADMIN_TEAM_ID;
+        });
+        return foundTeam !== undefined;
+    } catch {
+        const appwriteError = new Error('Appwrite Error');
+        throw new Error(appwriteError.message);
+    }
+};

@@ -1,4 +1,4 @@
-import './styles/LoginRegister.css';
+import './styles/Login.css';
 import React from 'react';
 import { useState } from 'react';
 import { account } from "../../lib/appwrite";
