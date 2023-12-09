@@ -48,17 +48,18 @@ const Auth = ({ account }) => {
                         })
                         .catch((error) => {
                             console.error(error);
-                            createAppAuth(account.$id, provider)
-                                    .then((res) => {
-                                        setAuthId(res.$id);
-                                    })
-                                    .catch((error) => console.error(error));
+                            setAuthId("error");
                         });
             }
         }
     }, [account, provider, appReg, onlyRunOnce]);
 
     const handleJWT = () => {
+        createAppAuth(account.$id, provider)
+            .then((res) => {
+                setAuthId(res.$id);
+            })
+            .catch((error) => console.error(error));
         createJWTToken(authId)
             .then((res) => {
                 window.location.href = appReg.appFallbackUrl + "/" + res;
@@ -73,7 +74,7 @@ const Auth = ({ account }) => {
 
     return (
         <>
-        {account && account !== "error" && appReg && authId ? (
+        {account && account !== "error" && appReg && authId === "error" ? (
             <div className='Auth'>
                 <div className='AuthBox'>
                     <h1 className='AuthHeader'>HC Auth</h1>
