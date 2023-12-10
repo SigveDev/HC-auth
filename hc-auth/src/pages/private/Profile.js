@@ -7,7 +7,11 @@ import { FileUploader } from "react-drag-drop-files";
 
 import DashboardHeader from '../../components/DashboardHeader';
 
+import Loader from '../../components/Loader';
+
 const Profile = ({ account }) => {
+    const [loading, setLoading] = useState(false);
+
     const [runOnce, setRunOnce] = useState(false);
     const [avatar, setAvatar] = useState(null);
     
@@ -18,8 +22,6 @@ const Profile = ({ account }) => {
 
     const [oldPass, setOldPass] = useState("");
     const [newPass, setNewPass] = useState("");
-
-    const [pfpFile, setPfpFile] = useState(null);
 
     useEffect(() => {
         if(account) {
@@ -72,6 +74,7 @@ const Profile = ({ account }) => {
 
     const saveAccountChanges = async () => {
         if (pass) {
+            setLoading(true);
             if (email !== account.email) {
                 await updateUserEmail(email, pass)
                     .then(() => {
@@ -91,8 +94,8 @@ const Profile = ({ account }) => {
     };
 
     const handlePFP = async (file) => {
-        setPfpFile(file);
         if(account) {
+            setLoading(true);
             await updatePFP(account.$id, file)
                 .then(() => {
                     window.location.reload();
@@ -117,6 +120,7 @@ const Profile = ({ account }) => {
 
     const saveName = async () => {
         if (name) {
+            setLoading(true);
             await updateUserName(name)
                 .then(() => {
                     removeModal();
@@ -142,6 +146,7 @@ const Profile = ({ account }) => {
 
     const savePassword = async () => {
         if (oldPass && newPass) {
+            setLoading(true);
             await updatePass(newPass, oldPass)
                 .then(() => {
                     removePasswordModal();
@@ -198,6 +203,7 @@ const Profile = ({ account }) => {
                         </div>
                         <button type='submit' className='button save'>Save</button>
                     </form>
+                    <p className='small-text'>Expect up to 1 hour for these changes to take effect on all sites</p>
                 </div>
             </main>
             <div id="modal">
@@ -249,6 +255,8 @@ const Profile = ({ account }) => {
                 </form>
             </div>
             <button id="password-modal-bg" onClick={() => removePasswordModal()}></button>
+
+            {loading && <Loader />}
         </div>
     );
 };

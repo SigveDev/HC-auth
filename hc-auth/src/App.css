@@ -14,5 +14,5 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .Router {
   background-color: var(--background-color);
-  min-height: 100dvh;
+  min-height: 100svh;
 }

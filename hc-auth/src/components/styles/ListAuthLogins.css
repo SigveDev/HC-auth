@@ -73,6 +73,11 @@
         -ms-grid-columns: 1fr 1fr 1fr;
         grid-template-columns: repeat(3, 1fr);
     }
+    .App .delete {
+        top: 0.5rem;
+        left: 0.5rem;
+        font-size: 0.9rem;
+    }
 }
 
 @media screen and (max-width: 375px) {

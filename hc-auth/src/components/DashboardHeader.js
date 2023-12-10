@@ -34,6 +34,10 @@ const DashboardHeader = ({ account }) => {
         setToggleMenu(!toggleMenu);
     }
 
+    const removeMenu = () => {
+        setToggleMenu(false);
+    }
+
     return (
         <div className="Header">
             <a href='/dashboard' className='logo'><span>HC</span> Auth</a>
@@ -41,6 +45,7 @@ const DashboardHeader = ({ account }) => {
                 <img src={avatar? avatar.href : ""} alt="Avatar" />
             </button>
             {toggleMenu && <ProfileMenu user={account} avatarUrl={avatar.href} />}
+            {toggleMenu && <div className="Backdrop" onClick={() => removeMenu()}></div>}
         </div>
     );
 };

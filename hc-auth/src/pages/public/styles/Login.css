@@ -72,3 +72,9 @@
 .form button:hover {
     filter: brightness(0.9);
 }
+.error {
+    color: var(--warning-color);
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}

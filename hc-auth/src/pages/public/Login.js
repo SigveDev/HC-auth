@@ -6,18 +6,21 @@ import { account } from "../../lib/appwrite";
 const Login = ({ provider }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [res, setRes] = useState(null);
     const id = window.location.pathname.split('/')[2];
 
-    const login = async (email, password) => {
-        await account.createEmailSession(email, password);
-
-        if(await account.get()) {
+    const login = (email, password) => {
+        const res = account.createEmailSession(email, password);
+        
+        res.then(() => {
             if(provider) {
                 window.location.href = `/auth/${id}`;
             } else {
                 window.location.href = '/dashboard';
             }
-        }
+        }).catch((error) => {
+            setRes("wrong");
+        });
     };
 
     return (
@@ -41,6 +44,7 @@ const Login = ({ provider }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                {res === "wrong" ? <p className="error">Incorrect email or password</p> : null}
                 <button type='submit'>Login</button>
             </form>
         </div>
