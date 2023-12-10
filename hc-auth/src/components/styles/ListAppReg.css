@@ -112,12 +112,12 @@
     }
     .AppReg .editIcon {
         top: 0.5rem;
-        right: 0.5rem;
+        right: 0.4rem;
         font-size: 0.9rem;
     }
     .AppReg .copyId {
         top: 0.5rem;
-        left: 0.5rem;
+        left: 0.2rem;
         font-size: 0.9rem;
     }
 }
