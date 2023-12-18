@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ListAuthLogins = ({ account }) => {
-    const [auths, setAuths] = useState(null);
+    const [auths, setAuths] = useState([]);
     const [appData, setAppData] = useState([]);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const ListAuthLogins = ({ account }) => {
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
             <div className="Auth-Wrapper">
-                {(auths && (auths.length > 0) && appData && (appData.length > 0)) && auths.map(async (auths) => {
+                {((auths.length > 0) && (appData.length > 0)) && auths.map(async (auths) => {
                     const app = appData.find((app) => app.$id === auths.appRegId);
                     return (
                         <div className="App" key={app && app.$id}>
