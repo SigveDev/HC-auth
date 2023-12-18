@@ -15,7 +15,6 @@ const ListAuthLogins = ({ account }) => {
                 .catch((error) => console.error(error));
         }
     }, [account]);
-    console.log(auths);
 
     useEffect(() => {
         if (auths) {
@@ -49,7 +48,7 @@ const ListAuthLogins = ({ account }) => {
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
             <div className="Auth-Wrapper">
-                {appData.length > 0 && auths.map(async (auths) => {
+                {(auths && (auths.length > 0) && appData && (appData.length > 0)) && auths.map(async (auths) => {
                     const app = appData.find((app) => app.$id === auths.appRegId);
                     return (
                         <div className="App" key={app && app.$id}>
