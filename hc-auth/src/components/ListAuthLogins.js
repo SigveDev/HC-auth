@@ -50,6 +50,7 @@ const ListAuthLogins = ({ account }) => {
             <div className="Auth-Wrapper">
                 {(appData.length > 0 && auths) && auths.map((auths) => {
                     const app = appData.find((app) => app.$id === auths.appRegId);
+                    console.log(app);
                     return (
                         <div className="App" key={app.$id}>
                             <button className="delete" onClick={() => deleteAuth(auths.$id)}><FontAwesomeIcon icon={faTrash} /></button>
