@@ -15,6 +15,7 @@ const ListAuthLogins = ({ account }) => {
                 .catch((error) => console.error(error));
         }
     }, [account]);
+    console.log(auths);
 
     useEffect(() => {
         if (auths) {
@@ -25,7 +26,7 @@ const ListAuthLogins = ({ account }) => {
                     .catch((error) => console.error(error));
             });
         }
-    }, [auths])
+    }, [auths]);
 
     const formatDate = (date) => {
         const formattedDate = new Date(date).toLocaleDateString(undefined, {
@@ -48,7 +49,7 @@ const ListAuthLogins = ({ account }) => {
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
             <div className="Auth-Wrapper">
-                {auths && (appData.length === auths.length) && auths.map(async (auths) => {
+                {appData.length === auths.length && auths.map(async (auths) => {
                     const app = appData.find((app) => app.$id === auths.appRegId);
                     return (
                         <div className="App" key={app && app.$id}>
