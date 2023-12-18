@@ -48,7 +48,7 @@ const ListAuthLogins = ({ account }) => {
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
             <div className="Auth-Wrapper">
-                {(appData.length === auths.length && auths) && auths.map(async (auths) => {
+                {auths && (appData.length === auths.length) && auths.map(async (auths) => {
                     const app = appData.find((app) => app.$id === auths.appRegId);
                     return (
                         <div className="App" key={app && app.$id}>
