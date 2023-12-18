@@ -49,8 +49,11 @@ const ListAuthLogins = ({ account }) => {
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
             <div className="Auth-Wrapper">
-                {(((auths.length > 0) && (appData.length > 0)) && auths.length === appData.length) && auths.map(async (auths) => {
-                    const app = appData.find((app) => app.$id === auths.appRegId);
+                {auths.length > 0 && appData.length > 0 && auths.map(async (auths) => {
+                    let app;
+                    while (app === undefined) {
+                        app = appData.find((app) => app.$id === auths.appRegId);
+                    }
                     return (
                         <div className="App" key={app && app.$id}>
                             <button className="delete" onClick={() => deleteAuth(auths.$id)}><FontAwesomeIcon icon={faTrash} /></button>
