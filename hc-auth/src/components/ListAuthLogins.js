@@ -48,15 +48,14 @@ const ListAuthLogins = ({ account }) => {
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
             <div className="Auth-Wrapper">
-                {(appData.length > 0 && auths) && auths.map((auths) => {
+                {(appData.length > 0 && auths) && auths.map(async (auths) => {
                     const app = appData.find((app) => app.$id === auths.appRegId);
-                    console.log(app);
                     return (
-                        <div className="App" key={app.$id}>
+                        <div className="App" key={app && app.$id}>
                             <button className="delete" onClick={() => deleteAuth(auths.$id)}><FontAwesomeIcon icon={faTrash} /></button>
-                            <h3 className='name'>{app.appName}</h3>
-                            <p className='date'>{formatDate(auths.$createdAt)}</p>
-                            <a href={app.appUrl} className='url'>{app.appUrl}</a>
+                            <h3 className='name'>{app && app.appName}</h3>
+                            <p className='date'>{app && formatDate(auths.$createdAt)}</p>
+                            <a href={app.appUrl} className='url'>{app && app.appUrl}</a>
                         </div>
                     );
                 })}
