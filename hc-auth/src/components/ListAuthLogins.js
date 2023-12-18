@@ -17,13 +17,12 @@ const ListAuthLogins = ({ account }) => {
     }, [account]);
 
     useEffect(() => {
-        if (auths) {
+        if (auths.length === 0) {
             setAppData([]);
-            auths.forEach((auth) => {
-                getAppRegByID(auth.appRegId)
-                    .then((res) => setAppData(a => [...a, res]))
-                    .catch((error) => console.error(error));
-            });
+        } else {
+            Promise.all(auths.map((auth) => getAppRegByID(auth.appRegId)))
+                .then((res) => setAppData(res))
+                .catch((error) => console.error(error));
         }
     }, [auths]);
 
@@ -48,15 +47,15 @@ const ListAuthLogins = ({ account }) => {
         <div className="ListAuthLogins">
             <h2 className='AuthHeader'>Authorized apps:</h2>
             <div className="Auth-Wrapper">
-                {auths.length === appData.length && auths.map(async (auths) => {
-                    console.log(auths);
+                {auths.length === appData.length && auths.map((auth) => {
+                    console.log(auth);
                     console.log(appData);
-                    const app = appData.find((app) => app.$id === auths.appRegId);
+                    const app = appData.find((app) => app.$id === auth.appRegId);
                     return (
                         <div className="App" key={app && app.$id}>
-                            <button className="delete" onClick={() => deleteAuth(auths.$id)}><FontAwesomeIcon icon={faTrash} /></button>
+                            <button className="delete" onClick={() => deleteAuth(auth.$id)}><FontAwesomeIcon icon={faTrash} /></button>
                             <h3 className='name'>{app && app.appName}</h3>
-                            <p className='date'>{app && formatDate(auths.$createdAt)}</p>
+                            <p className='date'>{app && formatDate(auth.$createdAt)}</p>
                             <a href={app.appUrl} className='url'>{app && app.appUrl}</a>
                         </div>
                     );
