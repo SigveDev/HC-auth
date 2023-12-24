@@ -244,13 +244,8 @@ export const updateUserName = async (name) => {
 
 export const getPFP = async (id) => {
     try {
-        const response = storage.getFileView(process.env.REACT_APP_PFP_STORAGE_ID, id);
-        const blob = await response.blob();
-        console.log(blob);
-        const url = URL.createObjectURL(blob);
-        console.log(url);
-        
-        return promise;
+        const response = storage.getFileView(process.env.REACT_APP_PFP_STORAGE_ID, id);   
+        return response;
     } catch {
         const appwriteError = new Error('Appwrite Error');
         throw new Error(appwriteError.message);
