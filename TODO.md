@@ -6,6 +6,7 @@ Project Description
 
 ### Todo
 
+- [ ] fix issue where images dont load on ios  
 - [ ] documentasion for creating an app with hc auth  
 
 ### In Progress
