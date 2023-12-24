@@ -17,15 +17,7 @@ const Auth = ({ account }) => {
                 .then((res) => {
                     if(res.pfp) {
                         getPFP(res.pfp)
-                            .then((res) => {
-                                return fetch(res);
-                            })
-                            .then((response) => {
-                                return response.blob();
-                            })
-                            .then((blob) => {
-                                setAvatar(URL.createObjectURL(blob));
-                            })
+                            .then((res) => setAvatar(res))
                             .catch((error) => console.error(error));
                     } else {
                         setAvatar(avatars.getInitials(account.name));
