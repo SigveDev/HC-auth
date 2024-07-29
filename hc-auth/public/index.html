@@ -12,9 +12,40 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>HC Auth</title>
+
+    <script src="https://sitetrace.sigve.dev/analytics/script.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <div id="confirmation-container"></div>
+    <!-- Placeholder for dynamic HTML content -->
+
+    <script>
+      // Function to load HTML content
+      function loadHTML() {
+        fetch("https://sitetrace.sigve.dev/analytics/index.html")
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById("confirmation-container").innerHTML = html;
+          })
+          .catch((error) => {
+            console.error("Error loading HTML:", error);
+          });
+      }
+
+      // Function to load CSS dynamically
+      function loadCSS() {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://sitetrace.sigve.dev/analytics/style.css";
+        document.head.appendChild(link);
+      }
+
+      // Call functions to load HTML and CSS
+      loadHTML();
+      loadCSS();
+    </script>
   </body>
 </html>
